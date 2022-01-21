@@ -23,6 +23,10 @@ connection.once("open", () => {
   console.log("Mongodb Connection Success!");
 });
 
+const recipeRouter = require("./routes/recipes");
+
+app.use("/recipe", recipeRouter);
+
 app.listen(PORT, () => {
   console.log(`Server is up and running on port: ${PORT}`);
 });
