@@ -19,4 +19,14 @@ router.route("/add").post((req, res) => {
     });
 });
 
+router.route("/").get((req, res) => {
+  Recipe.find()
+    .then((recipes) => {
+      res.json(recipes);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 module.exports = router;
