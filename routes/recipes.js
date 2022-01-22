@@ -35,33 +35,31 @@ router.route("/update/:id").put((req, res) => {
 
   const updateRecipe = { recipeName, ingredents, description };
 
-  const update = Recipe.findByIdAndUpdate(reciceId, updateRecipe).then(() => {
-    res
-      .status(200)
-      .send({ status: "Recipe Updated" })
-      .catch((err) => {
-        console.log(err);
-        res
-          .status(500)
-          .send({ status: "Error with updating recipe", err: err.message });
-      });
-  });
+  Recipe.findByIdAndUpdate(reciceId, updateRecipe)
+    .then(() => {
+      res.status(200).send({ status: "Recipe Updated" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .send({ status: "Error with updating recipe", err: err.message });
+    });
 });
 
 router.route("/delete/:id").delete((req, res) => {
   const recipeid = req.params.id;
 
-  Recipe.findByIdAndDelete(recipeid).then(() => {
-    res
-      .status(200)
-      .send({ status: "Recipe Deleted" })
-      .catch((err) => {
-        console.log(err);
-        res
-          .status(500)
-          .send({ status: "Error with delete recipe", err: err.message });
-      });
-  });
+  Recipe.findByIdAndDelete(recipeid)
+    .then(() => {
+      res.status(200).send({ status: "Recipe Deleted" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .send({ status: "Error with delete recipe", err: err.message });
+    });
 });
 
 module.exports = router;
